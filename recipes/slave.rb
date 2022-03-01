@@ -2,11 +2,11 @@ include_recipe "consul::default"
 include_recipe "consul::security"
 
 if node['consul']['retry_join']['provider'].empty?
-    masters = private_recipe_ips("consul", "master")
+    masters = "192.168.1.26"
 elsif not node['consul']['retry_join']['provider'].empty? and node['consul']['retry_join']['tag_key'].nil?
-    masters = private_recipe_ips("consul", "master")
+    masters = "192.168.1.26"
 else
-    masters = ["provider=#{node['consul']['retry_join']['provider'].strip} tag_key=#{node['consul']['retry_join']['tag_key'].strip} tag_value=#{node['consul']['retry_join']['tag_value'].strip}"]
+    masters = "192.168.1.26"
 end
 
 crypto_dir = x509_helper.get_crypto_dir(node['consul']['user'])
